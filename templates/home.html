@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+	Reza's BookStore
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>
+            Welcome {{ user.username }} |
+        </p>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Log IN</a> |
+        <a href="{% url 'signup' %}">SignUP</a>
+    {% endif %} 	
+{% endblock %}
