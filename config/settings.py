@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from django.core.mail import send_mail
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +31,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'pages',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,6 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+LOGIN_REDIRECT_URL = 'home_page'
+LOGOUT_REDIRECT_URL = 'home_page'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
