@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'pages',
+    'books',
 ]
 
 
@@ -117,7 +118,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
+# https://docs.djangoproject.com/en/6.0/howto/static-fil/
 
 STATIC_URL = 'static/'
 
