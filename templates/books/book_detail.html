@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block page_title %}
+    Books | {{ book.title }}
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'book_update' pk=book.pk %}">
+        <button>Update</button>
+    </a>
+    <a href="{% url 'book_delete' pk=book.pk %}">
+        <button>Delete</button>
+    </a>
+    <p>{{ book.title }}</p>
+    <p>{{ book.author }}</p>
+    <p>{{ book.category }}</p>
+    <p>{{ book.price }}</p>
+    _______________________________________________________
+    <br>
+    <a href=" {% url 'book_list' %}  "><button>Back</button></a>
+{% endblock %}
