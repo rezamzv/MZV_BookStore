@@ -121,9 +121,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-fil/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = (
+    str(BASE_DIR.joinpath('static')),
+)
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 LOGIN_REDIRECT_URL = 'home_page'
 LOGOUT_REDIRECT_URL = 'home_page'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
