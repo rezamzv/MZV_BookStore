@@ -1,21 +1,33 @@
 {% extends '_base.html' %}
+{% load static %}
 
-{% block page_title %}
-	Reza's BookStore
+{% block title %}Reza's book store — Home{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
 {% endblock %}
 
+
+
 {% block content %}
-    <p>Home Page</p>
-    {% if user.is_authenticated %}
-        <p>
-            Welcome {{ user.username }} |
-        </p>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Log Out</button>
-        </form>
-    {% else %}
-        <a href="{% url 'login' %}">Log IN</a> |
-        <a href="{% url 'signup' %}">SignUP</a>
-    {% endif %} 	
+    
+    <!-- ── Hero ─────────────────────────────────────────────── -->
+    <section class="hero">
+        <p class="hero-eyebrow">Curated by our booksellers</p>
+        <h1>Stories that <em>endure</em><br>across every age</h1>
+        <p>From the gaslit streets of Victorian London to the salons of Belle Époque Paris — ten works that defined
+            literature and continue to move us.</p>
+        <div class="hero-divider">
+            <span></span>
+            <em>❧</em>
+            <span></span>
+        </div>
+    </section>
+    <div class="book-grid" id="book-grid">
+    <!-- Cards injected by home.js -->
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+	<script src="{% static  'js/home.js' %}" defer></script>
 {% endblock %}
