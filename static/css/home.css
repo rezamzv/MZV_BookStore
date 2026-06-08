@@ -123,24 +123,54 @@
 }
 
 /* ── Book Grid ────────────────────────────────────────── */
-.book-grid {
+
+#book-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 25px auto;
+    grid-template-columns: repeat(auto-fit, minmax(375px, auto));
+    flex-wrap: wrap;
+    gap: 16px;
+    overflow: auto;
+    padding: 10px;
 }
 
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-areas:
+    "cover detail"
+    "cover price";
+    gap: 10px;
+    margin: 10px;
+}
+
+
+.book-card-cover {
+    grid-area: cover;
+}
+
+.book-card-body {
+    grid-area: detail;
+}
+
+.book-card-footer {
+    grid-area: price;
+}
+
+
 /* ── Book Card ────────────────────────────────────────── */
+
 .book-card {
+    flex: 0 0 120px;
+    width: 120px;
+    aspect-ratio: 2 / 3;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
     background: #fff;
     border: 1px solid #E0CDB0;
-    border-radius: 3px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
     transition: box-shadow 0.25s, transform 0.25s;
-    position: relative;
+
 }
 
 .book-card:hover {
@@ -149,7 +179,6 @@
 }
 
 .book-card-cover {
-    position: relative;
     aspect-ratio: 2/3;
     overflow: hidden;
     background: #3B1F0E;
@@ -168,7 +197,7 @@
 }
 
 .book-badge {
-    position: absolute;
+    position: relative;
     top: 10px;
     left: 10px;
     background: #3B1F0E;
@@ -184,6 +213,7 @@
 .book-card-body {
     padding: 1.1rem 1.1rem 0.8rem;
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
 }
@@ -224,14 +254,15 @@
 }
 
 .book-card-footer {
-    padding: 0 1.1rem 1.1rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: 12px;
     border-top: 1px solid #F0E4CC;
-    padding-top: 0.9rem;
+    padding: 0.9rem 1.1rem 1.1rem;
     margin-top: auto;
+    flex-shrink: 0;
 }
 
 .book-price {
@@ -275,6 +306,7 @@
 }
 
 /* Fallback cover art for books without images */
+
 .cover-fallback {
     width: 100%;
     height: 100%;
@@ -282,7 +314,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 0;
     text-align: center;
     box-sizing: border-box;
 }
@@ -308,3 +340,5 @@
     color: #6B3A1F;
     margin-bottom: 1rem;
 }
+
+
