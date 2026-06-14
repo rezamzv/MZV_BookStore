@@ -1,13 +1,27 @@
 {% extends '_base.html' %}
+{% load static %}
 
-{% block page_title %}
-	Reza's BookStore SignUp
+{% block title %}Sign up — Reza's Book Store{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock %}
 
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button type="submit">SignUp</button>
-    </form>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-ornament">❧</div>
+        <h1 class="auth-title">Create account</h1>
+        <p class="auth-subtitle">Join Reza's Book Store</p>
+        <div class="auth-divider"><span></span><em>❧</em><span></span></div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="auth-btn-primary">Sign Up</button>
+        </form>
+
+        <a href="{% url 'login' %}" class="auth-btn-ghost">Already have an account?</a>
+    </div>
+</div>
 {% endblock %}

@@ -1,13 +1,28 @@
 {% extends '_base.html' %}
-{% block page_title %}
-	Reza's BookStore Log IN
+{% load static %}
+
+{% block title %}Log in — Reza's Book Store{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock %}
+
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Log In</button>
-        <a href="{% url 'password_reset' %}"> <button type="button">Forgot Password?</button></a>
-        <a href="{%  url 'signup' %}"><button type="button">Don't have an account?</button></a>
-    </form>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-ornament">❧</div>
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-subtitle">Sign in to your account</p>
+        <div class="auth-divider"><span></span><em>❧</em><span></span></div>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="auth-btn-primary">Log In</button>
+        </form>
+
+        <a href="{% url 'password_reset' %}" class="auth-btn-ghost">Forgot password?</a>
+        <a href="{% url 'signup' %}" class="auth-btn-ghost">Don't have an account?</a>
+    </div>
+</div>
 {% endblock %}
