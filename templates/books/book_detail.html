@@ -1,21 +1,84 @@
 {% extends '_base.html' %}
+{% load static %}
 
-{% block page_title %}
-    Books | {{ book.title }}
+{% block title %}{{ book.title }} — Reza's Book Store{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'book_update' pk=book.pk %}">
-        <button>Update</button>
-    </a>
-    <a href="{% url 'book_delete' pk=book.pk %}">
-        <button>Delete</button>
-    </a>
-    <p>{{ book.title }}</p>
-    <p>{{ book.author }}</p>
-    <p>{{ book.category }}</p>
-    <p>{{ book.price }}</p>
-    _______________________________________________________
-    <br>
-    <a href=" {% url 'book_list' %}  "><button>Back</button></a>
+
+    <!-- ── Breadcrumb ───────────────────────────────────── -->
+    <div class="detail-breadcrumb">
+        <a href="{% url 'home_page' %}">Home</a>
+        <span class="detail-breadcrumb-sep">›</span>
+        <span>{{ book.title }}</span>
+    </div>
+
+    <!-- ── Main Detail Layout ───────────────────────────── -->
+    <div class="detail-wrapper">
+
+        <!-- Left: Cover -->
+        <div class="detail-cover-col">
+            <div class="detail-cover" style="background: {{ book.coverBg }}">
+                <img
+                    src="{{ book.cover }}"
+                    alt="Cover of {{ book.title }}"
+                    loading="lazy"
+                    onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
+                />
+                <div class="cover-fallback" style="display:none">
+                    <div class="cf-ornament">❧</div>
+                    <div class="cf-title">{{ book.title }}</div>
+                    <div class="cf-author">{{ book.author }}</div>
+                </div>
+                <span class="book-badge">{{ book.badge }}</span>
+            </div>
+        </div>
+
+        <!-- Right: Info -->
+        <div class="detail-info-col">
+
+            <p class="book-genre">{{ book.genre }} · {{ book.year }}</p>
+            <h1 class="detail-title">{{ book.title }}</h1>
+            <p class="detail-author">{{ book.author }}</p>
+
+            <div class="detail-divider">
+                <span></span><em>❧</em><span></span>
+            </div>
+
+            <!-- Description -->
+            <div class="detail-desc-block">
+                <p class="detail-desc-label">About this book</p>
+                <p class="detail-desc">{{ book.desc }}</p>
+            </div>
+
+            <!-- Price + Actions -->
+            <div class="detail-footer">
+                <span class="book-price">{{ book.price }}</span>
+                <div class="detail-actions">
+                    <a href="/cart/add?book={{ book.title|urlencode }}" class="btn-add-to-bag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none"
+                             stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                        Add to Bag
+                    </a>
+                    <a href="{% url 'home_page' %}" class="btn-back">
+                        ← Back
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/book_detail.js' %}" defer></script>
 {% endblock %}

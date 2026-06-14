@@ -14,195 +14,56 @@
     <section class="hero">
         <p class="hero-eyebrow">Curated by our booksellers</p>
         <h1>Stories that <em>endure</em><br>across every age</h1>
-        <p>From the gaslit streets of Victorian London to the salons of Belle Époque Paris — ten works that defined
-            literature and continue to move us.</p>
-        <div class="hero-divider">
-            <span></span>
-            <em>❧</em>
-            <span></span>
-        </div>
     </section>
     <div id="book-list">
-        <div class="book-grid" id="book-grid">
-            <div class="book-card-cover" style="background:${book.coverBg}">
-                <img
-                        src="${book.cover}"
-                        alt="Cover of ${book.title}"
-                        loading="lazy"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
-                />
-                <div class="cover-fallback" style="display:none">
-                    <div class="cf-ornament">❧</div>
-                    <div class="cf-title">${book.title}</div>
-                    <div class="cf-author">${book.author}</div>
+        {% for book in books %}
+            <div class="book-grid" id="book-grid">
+                <div class="book-card-cover" style="background:{{ book.coverBg }}">
+                    <img
+                            src="{{ book.cover }}"
+                            alt="Cover of {{ book.title }}"
+                            loading="lazy"
+                            onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
+                    />
+                    <div class="cover-fallback" style="display:none">
+                        <div class="cf-ornament">❧</div>
+                        <div class="cf-title">{{ book.title }}</div>
+                        <div class="cf-author">{{ book.author }}</div>
+                    </div>
+                    <span class="book-badge">{{ book.badge }}</span>
                 </div>
-                <span class="book-badge">${book.badge}</span>
-            </div>
-            <div class="book-card-body">
-                <p class="book-genre">${book.genre} · ${book.year}</p>
-                <h3 class="book-title">${book.title}</h3>
-                <p class="book-author">${book.author}</p>
-                <p class="book-desc">${book.desc}</p>
-            </div>
-            <div class="book-card-footer">
-                <div>
-                    <span class="book-price">${book.price}</span>
+                <div class="book-card-body">
+                    <h3 class="book-title">{{ book.title }}</h3>
+                    <p class="book-author">{{ book.author }}</p>
+                    <p class="book-desc">{{ book.category }}</p>
                 </div>
-                <a href="/cart/add?book=${encodeURIComponent(book.title)}" class="btn-add-to-bag">
-                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2.5"
-                         aria-hidden="true">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 0 1-8 0"/>
-                    </svg>
-                    Add to Bag
-                </a>
-            </div>
-        </div>
-        <div class="book-grid" id="book-grid">
-            <div class="book-card-cover" style="background:${book.coverBg}">
-                <img
-                        src="${book.cover}"
-                        alt="Cover of ${book.title}"
-                        loading="lazy"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
-                />
-                <div class="cover-fallback" style="display:none">
-                    <div class="cf-ornament">❧</div>
-                    <div class="cf-title">${book.title}</div>
-                    <div class="cf-author">${book.author}</div>
+                <div class="book-card-footer">
+                    <div>
+                        <span class="book-price">{{ book.price }}</span>
+                    </div>
+                    <a href="{% url 'book_detail' book.pk %}" class="btn-add-to-bag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none"
+                             stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                        More
+                    </a>
+                    <a href="/cart/add?book={{ book.title|urlencode }}" class="btn-add-to-bag">
+                        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none"
+                             stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                        Add to Bag
+                    </a>
+
                 </div>
-                <span class="book-badge">${book.badge}</span>
             </div>
-            <div class="book-card-body">
-                <p class="book-genre">${book.genre} · ${book.year}</p>
-                <h3 class="book-title">${book.title}</h3>
-                <p class="book-author">${book.author}</p>
-                <p class="book-desc">${book.desc}</p>
-            </div>
-            <div class="book-card-footer">
-                <div>
-                    <span class="book-price">${book.price}</span>
-                </div>
-                <a href="/cart/add?book=${encodeURIComponent(book.title)}" class="btn-add-to-bag">
-                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2.5"
-                         aria-hidden="true">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 0 1-8 0"/>
-                    </svg>
-                    Add to Bag
-                </a>
-            </div>
-        </div>
-        <div class="book-grid" id="book-grid">
-            <div class="book-card-cover" style="background:${book.coverBg}">
-                <img
-                        src="${book.cover}"
-                        alt="Cover of ${book.title}"
-                        loading="lazy"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
-                />
-                <div class="cover-fallback" style="display:none">
-                    <div class="cf-ornament">❧</div>
-                    <div class="cf-title">${book.title}</div>
-                    <div class="cf-author">${book.author}</div>
-                </div>
-                <span class="book-badge">${book.badge}</span>
-            </div>
-            <div class="book-card-body">
-                <p class="book-genre">${book.genre} · ${book.year}</p>
-                <h3 class="book-title">${book.title}</h3>
-                <p class="book-author">${book.author}</p>
-                <p class="book-desc">${book.desc}</p>
-            </div>
-            <div class="book-card-footer">
-                <div>
-                    <span class="book-price">${book.price}</span>
-                </div>
-                <a href="/cart/add?book=${encodeURIComponent(book.title)}" class="btn-add-to-bag">
-                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2.5"
-                         aria-hidden="true">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 0 1-8 0"/>
-                    </svg>
-                    Add to Bag
-                </a>
-            </div>
-        </div>
-        <div class="book-grid" id="book-grid">
-            <div class="book-card-cover" style="background:${book.coverBg}">
-                <img
-                        src="${book.cover}"
-                        alt="Cover of ${book.title}"
-                        loading="lazy"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
-                />
-                <div class="cover-fallback" style="display:none">
-                    <div class="cf-ornament">❧</div>
-                    <div class="cf-title">${book.title}</div>
-                    <div class="cf-author">${book.author}</div>
-                </div>
-                <span class="book-badge">${book.badge}</span>
-            </div>
-            <div class="book-card-body">
-                <p class="book-genre">${book.genre} · ${book.year}</p>
-                <h3 class="book-title">${book.title}</h3>
-                <p class="book-author">${book.author}</p>
-                <p class="book-desc">${book.desc}</p>
-            </div>
-            <div class="book-card-footer">
-                <div>
-                    <span class="book-price">${book.price}</span>
-                </div>
-                <a href="/cart/add?book=${encodeURIComponent(book.title)}" class="btn-add-to-bag">
-                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2.5"
-                         aria-hidden="true">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 0 1-8 0"/>
-                    </svg>
-                    Add to Bag
-                </a>
-            </div>
-        </div>
-        <div class="book-grid" id="book-grid">
-            <div class="book-card-cover" style="background:${book.coverBg}">
-                <img
-                        src="${book.cover}"
-                        alt="Cover of ${book.title}"
-                        loading="lazy"
-                        onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
-                />
-                <div class="cover-fallback" style="display:none">
-                    <div class="cf-ornament">❧</div>
-                    <div class="cf-title">${book.title}</div>
-                    <div class="cf-author">${book.author}</div>
-                </div>
-                <span class="book-badge">${book.badge}</span>
-            </div>
-            <div class="book-card-body">
-                <p class="book-genre">${book.genre} · ${book.year}</p>
-                <h3 class="book-title">${book.title}</h3>
-                <p class="book-author">${book.author}</p>
-                <p class="book-desc">${book.desc}</p>
-            </div>
-            <div class="book-card-footer">
-                <div>
-                    <span class="book-price">${book.price}</span>
-                </div>
-                <a href="/cart/add?book=${encodeURIComponent(book.title)}" class="btn-add-to-bag">
-                    <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2.5"
-                         aria-hidden="true">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 0 1-8 0"/>
-                    </svg>
-                    Add to Bag
-                </a>
-            </div>
-        </div>
+        {% endfor %}
+
     </div>
 
 
