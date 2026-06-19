@@ -16,7 +16,6 @@ class Book(models.Model):
         ('classics', 'Classics'),
         ('education', 'Education'),
         ('children', 'Children'),
-        ('new_arrivals', 'New Arrivals'),
     ]
 
     class Meta:

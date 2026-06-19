@@ -13,5 +13,15 @@ class HomePageView(generic.ListView):
     form_class = BookForm
     paginate_by = 12
 
+class CategoryListView(generic.ListView):
+    template_name = 'pages/home.html'
+    model = Book
+    context_object_name = 'books'
+    paginate_by = 12
+
+    def get_queryset(self):
+        category = self.kwargs.get('category')
+        return Book.objects.filter(category=category)
+
 
 
