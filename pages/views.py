@@ -11,6 +11,7 @@ class HomePageView(generic.ListView):
     model = Book
     context_object_name = 'books'
     form_class = BookForm
+    paginate_by = 12
 
 
 

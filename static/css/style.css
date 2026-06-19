@@ -481,6 +481,7 @@ a:hover {
     height: 100%;
     object-fit: cover;
     transition: transform 0.4s ease;
+        box-shadow: 5px 5px 0 #C8A97E55, 0 18px 48px rgba(59,31,14,0.22)
 }
 
 .book-card:hover .book-cover img {

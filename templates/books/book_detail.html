@@ -24,7 +24,7 @@
         <div class="detail-cover-col">
             <div class="detail-cover" style="background: {{ book.coverBg }}">
                 <img
-                    src="{{ book.cover }}"
+                    src="{{ book.cover.url }}"
                     alt="Cover of {{ book.title }}"
                     loading="lazy"
                     onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
@@ -52,7 +52,7 @@
             <!-- Description -->
             <div class="detail-desc-block">
                 <p class="detail-desc-label">About this book</p>
-                <p class="detail-desc">{{ book.desc }}</p>
+                <p class="detail-desc">{{ book.description }}</p>
             </div>
 
             <!-- Price + Actions -->

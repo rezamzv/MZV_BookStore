@@ -126,27 +126,46 @@
 
 #book-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(375px, auto));
-    flex-wrap: wrap;
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    overflow: auto;
     padding: 10px;
+}
+
+@media (max-width: 1600px) {
+    #book-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    #book-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #book-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 
 .book-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-areas:
     "cover detail"
     "cover price";
     gap: 10px;
     margin: 10px;
+    justify-content: center;
 }
 
 
 .book-card-cover {
     grid-area: cover;
+    box-shadow: 5px 5px 0 #C8A97E55, 0 18px 48px rgba(59,31,14,0.22)
+    aspect-ratio: 1 / 1; /* makes it square */
 }
 
 .book-card-body {
@@ -339,6 +358,43 @@
     font-size: 2rem;
     color: #6B3A1F;
     margin-bottom: 1rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #8a6a4f;
+    border-radius: 4px;
+    background-color: #f4ece1;
+    color: #5c4530;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    margin: 3px;
+}
+
+.pagination a:hover {
+    background-color: #6b4e35;
+    color: #f4ece1;
+    border-color: #6b4e35;
+}
+
+.pagination span {
+    background-color: #6b4e35;
+    color: #f4ece1;
+    border-color: #6b4e35;
+    font-weight: 500;
 }
 
 
