@@ -29,11 +29,12 @@
         </a>
 
         <!-- Search -->
-        <form class="header-search" action="/search" method="get">
+        <form class="header-search" action="{% url 'search_list' %}" method="get">
             <input
                     type="text"
                     name="q"
-                    placeholder="Search by title, author, or ISBN…"
+                    value="{{ query }}"
+                    placeholder="Search by title, author or desc…"
                     aria-label="Search books"
             />
             <button type="submit" aria-label="Search">Search</button>
