@@ -1,12 +1,19 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 import os
 
+from accounts.models import CustomUser
+
+
 def rename_image(instance, filename):
     ext = filename.split('.')[-1]  # get the original extension (jpg, png, etc.)
     new_filename = f"{slugify(instance.title)}.{ext}"
     return os.path.join('covers/', new_filename)
+
 
 class Book(models.Model):
     CATEGORY_CHOICES = [
@@ -21,7 +28,6 @@ class Book(models.Model):
     class Meta:
         ordering = ['-created_at']  # the minus sign = descending = newest first
 
-
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
@@ -29,10 +35,22 @@ class Book(models.Model):
     description = models.TextField(max_length=500)
     cover = models.ImageField(upload_to=rename_image, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
-
+    created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse ('book_detail', kwargs={'pk': self.pk})
+        return reverse('book_detail', kwargs={'pk': self.pk})
+
+
+class Comment(models.Model):
+    class Meta:
+        ordering = ['-created_at']
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='comments')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
+    comment = models.TextField(max_length=300)
+    created_at = models.DateTimeField(auto_now_add=True)
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+    )

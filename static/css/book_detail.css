@@ -31,9 +31,10 @@
 .detail-wrapper {
     background: #F9F1E3;
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 22.5% 1fr;
     gap: 3.5rem;
-    max-width: 960px;
+    width: 80%;
+    max-width: 1980px;
     margin: 0 auto;
     padding: 3.5rem 2rem 5rem;
 }

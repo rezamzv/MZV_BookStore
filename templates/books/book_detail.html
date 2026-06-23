@@ -6,10 +6,11 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/comments_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock %}
 
 {% block content %}
-
     <!-- ── Breadcrumb ───────────────────────────────────── -->
     <div class="detail-breadcrumb">
         <a href="{% url 'home_page' %}">Home</a>
@@ -24,10 +25,10 @@
         <div class="detail-cover-col">
             <div class="detail-cover" style="background: {{ book.coverBg }}">
                 <img
-                    src="{{ book.cover.url }}"
-                    alt="Cover of {{ book.title }}"
-                    loading="lazy"
-                    onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
+                        src="{{ book.cover.url }}"
+                        alt="Cover of {{ book.title }}"
+                        loading="lazy"
+                        onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
                 />
                 <div class="cover-fallback" style="display:none">
                     <div class="cf-ornament">❧</div>
@@ -76,6 +77,70 @@
 
         </div>
     </div>
+
+
+
+    <section class="comments-section">
+        <h2 class="section-label">Reader Reviews</h2>
+        <h3 class="section-title">What our readers <em>say</em></h3>
+
+        <div class="comments-list">
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-avatar">{{ comment.author|make_list|first|upper }}</div>
+                    <div class="comment-body">
+                        <div class="comment-header">
+                            <span class="comment-name">{{ comment.author }}</span>
+                            <span class="comment-date">{{ comment.created_at }}</span>
+                        </div>
+                        <div class="comment-stars">{{ comment.rating }}</div>
+                        <p class="comment-text">{{ comment.comment }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No reviews yet. Be the first to leave one!</p>
+            {% endfor %}
+
+            <!-- Add Comment Form -->
+            <div class="comment-form">
+                <h4 class="form-title">Leave a Review</h4>
+                {% if user.is_authenticated %}
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ comment_form }}
+                        <button type="submit" class="form-btn">Submit Review</button>
+                    </form>
+                {% else %}
+                     <a href="{% url 'signup' %}" class="comment-redirect" >Sign Up</a>
+                     <a href="{% url 'login' %}" class="comment-redirect" >Sign In</a>
+                {% endif %}
+            </div>
+
+            <script>
+                const stars = document.querySelectorAll('.star');
+                const hint = document.getElementById('starHint');
+                const labels = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+                let selected = 0;
+
+                stars.forEach(star => {
+                    star.addEventListener('mouseenter', () => highlight(+star.dataset.val));
+                    star.addEventListener('mouseleave', () => highlight(selected));
+                    star.addEventListener('click', () => {
+                        selected = +star.dataset.val;
+                        hint.textContent = labels[selected];
+                        highlight(selected);
+                    });
+
+                });
+
+                function highlight(val) {
+                    stars.forEach(s => s.classList.toggle('active', +s.dataset.val <= val));
+                }
+
+
+            </script>
+
+    </section>
 
 {% endblock %}
 
