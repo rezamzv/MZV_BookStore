@@ -7,8 +7,8 @@ from .models import Book,Comment
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'category', 'price', 'description', 'cover']
-        # created_by is excluded — set automatically in the view
+        fields = ['title', 'author', 'category', 'price', 'description', 'cover',]
+
 
 
 class CommentForm(forms.ModelForm):

@@ -35,10 +35,7 @@ class Book(models.Model):
     description = models.TextField(max_length=500)
     cover = models.ImageField(upload_to=rename_image, null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.title
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('book_detail', kwargs={'pk': self.pk})

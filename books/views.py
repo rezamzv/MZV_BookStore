@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.urls import reverse_lazy, reverse
@@ -23,24 +23,47 @@ def book_detail_view(request, pk):
     else:
         comment_form = CommentForm()
 
+    return render(
+        request,
+        'books/book_detail.html',
+        {
+            'book': book,
+            'comments': book_comments,
+            'comment_form': comment_form
+        }
+    )
 
-    return render(request, 'books/book_detail.html', {'book': book, 'comments': book_comments, 'comment_form': comment_form})
 
-
-class BookCreateView(LoginRequiredMixin, generic.CreateView):
+class BookCreateView(LoginRequiredMixin,UserPassesTestMixin,  generic.CreateView):
     model = Book
     template_name = 'books/book_create.html'
-    fields = ['title', 'author', 'price', 'cover', 'category', 'description' ,'created_by']  # list your actual fields
-    success_url = reverse_lazy('home_page')  # where to go after success
+    fields = ['title', 'author', 'price', 'cover', 'category', 'description',]
+    success_url = reverse_lazy('home_page')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
 
 
-class BookUpdateView(generic.UpdateView):
+class BookUpdateView(LoginRequiredMixin,UserPassesTestMixin ,generic.UpdateView):
     model = Book
     template_name = 'books/book_update.html'
     fields = '__all__'
 
+    def test_func(self):
+        book = self.get_object()
+        return book.created_by == self.request.user
 
-class BookDeleteView(generic.DeleteView):
+
+
+class BookDeleteView(LoginRequiredMixin,UserPassesTestMixin, generic.DeleteView):
     model = Book
     template_name = 'books/book_delete.html'
     success_url = reverse_lazy('home_page')
+
+    def test_func(self):
+        book = self.get_object()
+        return book.created_by == self.request.user
