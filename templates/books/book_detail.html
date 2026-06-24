@@ -74,6 +74,18 @@
                     </a>
                 </div>
             </div>
+            {% if user.is_authenticated and user.is_staff %}
+                <div id="crud-div">
+                    <a href="{% url 'book_update' book.id%}" id="crud-btn">
+                        edit
+                    </a>
+                    <a href="{% url 'book_delete' book.id%}" id="crud-btn">
+                        delete
+                    </a>
+                </div>
+
+            {% endif %}
+
 
         </div>
     </div>
@@ -111,8 +123,8 @@
                         <button type="submit" class="form-btn">Submit Review</button>
                     </form>
                 {% else %}
-                     <a href="{% url 'signup' %}" class="comment-redirect" >Sign Up</a>
-                     <a href="{% url 'login' %}" class="comment-redirect" >Sign In</a>
+                    <a href="{% url 'signup' %}" class="comment-redirect">Sign Up</a>
+                    <a href="{% url 'login' %}" class="comment-redirect">Sign In</a>
                 {% endif %}
             </div>
 

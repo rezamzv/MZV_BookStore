@@ -194,15 +194,40 @@ a:hover {
     color: var(--ink);
     outline: none;
 }
+
 #login-custom-input {
     border-radius: 5px;
     border-color: #8a6a4f;
-    background: transparent;
     padding: 0.5rem 1rem;
     color: var(--ink);
     background: #F9F1E3;
     width: 100%;
     margin: 5px 0;
+}
+
+#crud-div {
+    display: inline-flex;
+    justify-content: right;
+    margin: 10px 0;
+    gap: 15px;
+
+}
+
+#crud-btn {
+    background: #6b2c18;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    color: white;
+    border: 1.5px solid #6b2c18;
+    border-radius: 3px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+
 }
 
 .header-search input::placeholder {
@@ -320,19 +345,19 @@ a:hover {
 @media (max-width: 950px) {
     .site-nav .container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);  /* 2 equal columns */  ;
+        grid-template-columns: repeat(2, 1fr); /* 2 equal columns */;
         align-items: center;
         justify-content: center;
         gap: 0;
     }
 
-    .site-nav .container a{
+    .site-nav .container a {
         text-align: center;
     }
 
-    .site-nav .container a:first-child{
-        grid-column: span 2;  /* ← takes up 2 rows */
-}
+    .site-nav .container a:first-child {
+        grid-column: span 2; /* ← takes up 2 rows */
+    }
 }
 
 /* ── Hero Banner ─────────────────────────────────────────── */

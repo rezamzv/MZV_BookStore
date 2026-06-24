@@ -1,13 +1,27 @@
 {% extends '_base.html' %}
+{% load static %}
 
-{% block page_title %}
-	Delete Book
+{% block title %}
+    New book — Reza's Book Store
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock %}
 
 {% block content %}
-    <p>Please Confirm Deletion.</p>
-    <form action="" method="post">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-ornament">❧</div>
+            <h1 class="auth-title">Delete Book</h1>
+            <p class="auth-subtitle">Delete this book.</p>
+            <div class="auth-divider"><span></span><em>❧</em><span></span></div>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-btn-primary">Delete</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

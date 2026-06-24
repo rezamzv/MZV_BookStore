@@ -1,14 +1,27 @@
 {% extends '_base.html' %}
+{% load static %}
 
-{% block page_title %}
-	Update Book
+{% block title %}
+    Update book — Reza's Book Store
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock %}
 
 {% block content %}
-    <p>Please fill out the form below to update book.</p>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update</button>
-    </form>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-ornament">❧</div>
+            <h1 class="auth-title">Edit Book</h1>
+            <p class="auth-subtitle">update This book's information.</p>
+            <div class="auth-divider"><span></span><em>❧</em><span></span></div>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-btn-primary">update book</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

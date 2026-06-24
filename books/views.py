@@ -1,11 +1,10 @@
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.urls import reverse_lazy, reverse
 
 from accounts.models import CustomUser
-from books.forms import CommentForm
+from books.forms import CommentForm, BookForm
 from books.models import Book, Comment
 
 
@@ -28,10 +27,11 @@ def book_detail_view(request, pk):
     return render(request, 'books/book_detail.html', {'book': book, 'comments': book_comments, 'comment_form': comment_form})
 
 
-class BookCreateView(generic.CreateView):
+class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     template_name = 'books/book_create.html'
-    fields = '__all__'
+    fields = ['title', 'author', 'price', 'cover', 'category', 'description' ,'created_by']  # list your actual fields
+    success_url = reverse_lazy('home_page')  # where to go after success
 
 
 class BookUpdateView(generic.UpdateView):
@@ -43,4 +43,4 @@ class BookUpdateView(generic.UpdateView):
 class BookDeleteView(generic.DeleteView):
     model = Book
     template_name = 'books/book_delete.html'
-    success_url = reverse_lazy('book_list')
+    success_url = reverse_lazy('home_page')
