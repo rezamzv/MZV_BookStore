@@ -194,6 +194,16 @@ a:hover {
     color: var(--ink);
     outline: none;
 }
+#login-custom-input {
+    border-radius: 5px;
+    border-color: #8a6a4f;
+    background: transparent;
+    padding: 0.5rem 1rem;
+    color: var(--ink);
+    background: #F9F1E3;
+    width: 100%;
+    margin: 5px 0;
+}
 
 .header-search input::placeholder {
     color: rgba(58, 46, 30, 0.45);
@@ -202,7 +212,6 @@ a:hover {
 
 .header-search button {
     background: var(--mahogany);
-    border: none;
     color: var(--parchment);
     padding: 0 1.1rem;
     cursor: pointer;
