@@ -4,10 +4,10 @@
 {% block title %}{{ book.title }} — Reza's Book Store{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"> {# need for wishlist and add to bag buttons #}
     <link rel="stylesheet" href="{% static 'css/book_detail.css' %}">
     <link rel="stylesheet" href="{% static 'css/comments_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+
 {% endblock %}
 
 {% block content %}
@@ -108,7 +108,7 @@
 
     <section class="comments-section">
         <h2 class="section-label">Reader Reviews</h2>
-        <h3 class="section-title">What our readers <em>say</em></h3>
+        <h3 class="section-title">What our readers say</h3>
 
         <div class="comments-list">
             {% for comment in comments %}

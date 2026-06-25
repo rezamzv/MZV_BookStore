@@ -5,15 +5,14 @@
     background: #2A1208;
     border-bottom: 1px solid #6B3A1F;
     padding: 0.85rem 2rem;
-    font-family: 'EB Garamond', Georgia, serif;
     font-size: 0.78rem;
-    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: #C8A97E;
+    margin-bottom: 3px;
 }
 
 .detail-breadcrumb a {
-    color: #C8A97E;
+
     text-decoration: none;
     transition: color 0.2s;
 }
@@ -96,41 +95,28 @@
 .detail-info-col {
     display: flex;
     flex-direction: column;
-    padding-top: 0.5rem;
-    flex-wrap: nowrap;
+
 }
 
 .detail-title {
-    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 700;
+    font-weight: 550;
     color: #2A1208;
     margin: 0.3rem 0 0.3rem;
     line-height: 1.2;
 }
 
 .detail-author {
-    font-family: 'EB Garamond', Georgia, serif;
     font-style: italic;
-    font-size: 1.05rem;
     color: #7A4220;
-    margin-bottom: 1.4rem;
+
 }
 
 /* Ornament divider */
 .detail-divider {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1.6rem;
-}
-
-.detail-divider span {
-    flex: 1;
-    height: 1px;
-    background: #C8A97E;
-    display: block;
-    max-width: 60px;
+    margin-bottom: 0.5rem;
 }
 
 .detail-divider em {
@@ -138,7 +124,6 @@
     font-style: normal;
     font-size: 1.1rem;
 }
-
 /* Description block */
 .detail-desc-block {
     background: #F0E4CC;
@@ -171,7 +156,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1rem;
     border-top: 1px solid #E0CDB0;
     padding-top: 1.4rem;
@@ -187,13 +172,11 @@
 .btn-back {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
     padding: 8px 14px;
     background: transparent;
     color: #7A4220;
     border: 1.5px solid #C8A97E;
     border-radius: 3px;
-    font-family: 'EB Garamond', Georgia, serif;
     font-size: 0.82rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
