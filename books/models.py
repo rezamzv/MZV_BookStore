@@ -51,3 +51,15 @@ class Comment(models.Model):
     rating = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
     )
+
+
+class WishList(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='wishlist')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='wishlisted_by')
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['user', 'book']  # ← prevent duplicate entries
+
+    def __str__(self):
+        return f"{self.user} - {self.book}"
