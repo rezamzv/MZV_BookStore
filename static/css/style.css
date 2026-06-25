@@ -767,11 +767,12 @@ a:hover {
     color: rgba(245, 239, 224, 0.7);
     padding: 3.5rem 0 1.5rem;
     border-top: 2px solid var(--mahogany);
+
 }
 
 .footer-grid {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    display: flex;
+   justify-content: space-between;
     gap: 2.5rem;
     margin-bottom: 2.5rem;
 }

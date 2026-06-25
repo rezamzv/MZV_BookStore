@@ -397,4 +397,23 @@
     font-weight: 500;
 }
 
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    background: #F0E4CC;
+    border: 1px solid #C8A97E;
+    border-radius: 6px;
+    color: #2A1208;
+
+}
+
+.adj-quantity{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
 

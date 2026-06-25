@@ -107,7 +107,7 @@
                 <span>Wishlist</span>
             </a>
 
-            <a href="/cart" class="header-action cart-wrapper">
+            <a href="{% url 'cart' %}" class="header-action cart-wrapper">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
                     <line x1="3" y1="6" x2="21" y2="6"/>
@@ -186,40 +186,13 @@
                     in the heart of the Old Town since 1887.
                 </p>
             </div>
-
-            <!-- Discover -->
-            <div class="footer-col">
-                <h4>Discover</h4>
-                <ul>
-                    <li><a href="/new-arrivals">New Arrivals</a></li>
-                    <li><a href="/bestsellers">Bestsellers</a></li>
-                    <li><a href="/staff-picks">Staff Picks</a></li>
-                    <li><a href="/rare-editions">Rare Editions</a></li>
-                    <li><a href="/award-winners">Award Winners</a></li>
-                </ul>
-            </div>
-
-            <!-- Help -->
-            <div class="footer-col">
-                <h4>Help</h4>
-                <ul>
-                    <li><a href="/delivery">Delivery Information</a></li>
-                    <li><a href="/returns">Returns &amp; Exchanges</a></li>
-                    <li><a href="/gift-wrapping">Gift Wrapping</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
-                </ul>
-            </div>
-
             <!-- Visit -->
             <div class="footer-col">
                 <h4>Visit Us</h4>
                 <ul>
-                    <li><a href="/stores">Our Shops</a></li>
-                    <li><a href="/events">Author Events</a></li>
-                    <li><a href="/book-club">Book Club</a></li>
-                    <li><a href="/schools">Schools Programme</a></li>
-                    <li><a href="/wholesale">Wholesale</a></li>
+                    <li><a href="{% url 'home_page' %}">New Arrivals</a></li>
+                    <li><a >Contact Us: Reza_mzv99@proton.me</a></li>
+                    <li><a >Wholesale: +98938****860</a></li>
                 </ul>
             </div>
 
@@ -227,13 +200,6 @@
 
         <div class="footer-bottom">
             <span>© 2026 Reza Books. All rights reserved.</span>
-            <span>
-          <a href="/privacy" style="color:inherit;">Privacy Policy</a>
-          &nbsp;·&nbsp;
-          <a href="/terms" style="color:inherit;">Terms &amp; Conditions</a>
-          &nbsp;·&nbsp;
-          <a href="/accessibility" style="color:inherit;">Accessibility</a>
-        </span>
         </div>
     </div>
 </footer>

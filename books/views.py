@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from books.forms import CommentForm, BookForm
 from books.models import Book, Comment, WishList
+from cart.models import Cart
 
 
 class BookDetailView(generic.DetailView):
@@ -25,6 +26,13 @@ class BookDetailView(generic.DetailView):
                 user=self.request.user,
                 book=self.object
             ).exists()
+
+        # cart_quantity
+        if self.request.user.is_authenticated:
+            cart_item = Cart.objects.filter(user=self.request.user, book=self.object).first()
+            context['cart_quantity'] = cart_item.quantity if cart_item else 0
+        else:
+            context['cart_quantity'] = 0
 
         return context
 
@@ -84,7 +92,6 @@ def toggle_wishlist(request, pk):
     if not created:
         wishlist_item.delete()  # already in wishlist → remove it
         added = False
-    print(added)
     return redirect('book_detail', pk=pk)
 
 

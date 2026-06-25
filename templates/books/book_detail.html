@@ -62,14 +62,18 @@
             <div class="detail-footer">
                 <span class="book-price">{{ book.price }}</span>
                 <div class="detail-actions">
-                    <a href="/cart/add?book={{ book.title|urlencode }}" class="btn-add-to-bag">
+                    <a href="{% url 'add_to_cart' book.pk %}" class="btn-add-to-bag">
                         <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none"
                              stroke-width="2.5" aria-hidden="true">
                             <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
                             <line x1="3" y1="6" x2="21" y2="6"/>
                             <path d="M16 10a4 4 0 0 1-8 0"/>
                         </svg>
-                        Add to Bag
+                        {% if cart_quantity > 0 %}
+                            In Bag ({{ cart_quantity }})
+                        {% else %}
+                            Add to Bag
+                        {% endif %}
                     </a>
 
                     {% if user.is_authenticated %}
