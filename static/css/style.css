@@ -794,7 +794,6 @@ a:hover {
 }
 
 .footer-col h4 {
-    font-family: var(--ff-small);
     font-size: 0.68rem;
     letter-spacing: 0.2em;
     color: var(--gold);
@@ -827,7 +826,6 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: var(--ff-small);
     font-size: 0.62rem;
     letter-spacing: 0.1em;
     color: rgba(245, 239, 224, 0.35);
@@ -878,68 +876,6 @@ a:hover {
         text-align: center;
     }
 }
-
-/*── custom btn ────────────────────────────────────────────*/
-/* Primary */
-.btn-bookstore {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    background: #3B1F0E;
-    color: #F5E6C8;
-    border: 1.5px solid #6B3A1F;
-    border-radius: 4px;
-    font-family: var(--ff-body);
-    font-size: 15px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-
-.btn-bookstore:hover {
-    background: #6B3A1F;
-    color: #FDF3DC;
-    border-color: #A0602A;
-}
-
-.btn-bookstore:active {
-    transform: scale(0.98);
-}
-
-/* Outline */
-.btn-bookstore-outline {
-    /* same base styles */
-    background: var(--cream);
-    color: #3B1F0E;
-    border: 2px solid #3B1F0E;
-    font-family: var(--ff-body), serif;
-    font-weight: 800;
-
-}
-
-.btn-bookstore-outline:hover {
-    background: #3B1F0E;
-    color: #F5E6C8;
-}
-
-/* Ghost / underline */
-.btn-bookstore-ghost {
-    background: transparent;
-    color: #7A4220;
-    border: none;
-    border-bottom: 1.5px solid #7A4220;
-    border-radius: 0;
-    font-size: 14px;
-
-}
-
-.btn-bookstore-ghost:hover {
-    color: #3B1F0E;
-    border-color: #3B1F0E;
-}
-
 /*── Account Dropdown ──────────────────────────────────*/
 .account-menu-wrapper {
     position: relative;
@@ -963,13 +899,6 @@ a:hover {
     stroke: currentColor;
     fill: none;
     stroke-width: 1.8;
-}
-
-.account-chevron {
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2.5;
-    transition: transform 0.2s ease;
 }
 
 .account-menu-toggle[aria-expanded="true"] .account-chevron {
