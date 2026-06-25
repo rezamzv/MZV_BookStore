@@ -16,15 +16,7 @@
                     <img
                             src="{{ item.book.cover.url }}"
                             alt="Cover of {{ item.book.title }}"
-                            loading="lazy"
-                            onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
                     />
-                    <div class="cover-fallback" style="display:none">
-                        <div class="cf-ornament">❧</div>
-                        <div class="cf-title">{{ item.book.title }}</div>
-                        <div class="cf-author">{{ item.book.author }}</div>
-                    </div>
-                    <span class="book-badge">{{ item.book.badge }}</span>
                 </div>
                 <div class="book-card-body">
                     <h3 class="book-title">{{ item.book.title }}</h3>
@@ -48,18 +40,10 @@
             <p>Your cart is empty.</p>
         {% endfor %}
     </div>
+
     <div class="cart-footer">
         <strong>Total: ${{ total }}</strong>
         <a href="" class="btn-add-to-bag">Finalize</a>
     </div>
 
 {% endblock %}
-
-{% block extra_js %}
-    <script src="{% static  'js/home.js' %}" defer></script>
-{% endblock %}
-
-
-
-<p>{{ item.book.title }} × {{ item.quantity }} — ${{ item.book.price }}</p>
-<a href="{% url 'remove_from_cart' item.book.pk %}">Remove</a>

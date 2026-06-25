@@ -23,8 +23,6 @@
                     <img
                             src="{{ book.cover.url }}"
                             alt="Cover of {{ book.title }}"
-                            loading="lazy"
-                            onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
                     />
                     <div class="cover-fallback" style="display:none">
                         <div class="cf-ornament">❧</div>

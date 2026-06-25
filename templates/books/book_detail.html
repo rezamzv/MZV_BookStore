@@ -30,18 +30,11 @@
                         loading="lazy"
                         onerror="this.style.display='none';this.parentElement.querySelector('.cover-fallback').style.display='flex'"
                 />
-                <div class="cover-fallback" style="display:none">
-                    <div class="cf-ornament">❧</div>
-                    <div class="cf-title">{{ book.title }}</div>
-                    <div class="cf-author">{{ book.author }}</div>
-                </div>
-                <span class="book-badge">{{ book.badge }}</span>
             </div>
         </div>
 
         <!-- Right: Info -->
         <div class="detail-info-col">
-
             <p class="book-genre">{{ book.category }}</p>
             <h1 class="detail-title">{{ book.title }}</h1>
             <p class="detail-author">{{ book.author }}</p>
@@ -166,12 +159,8 @@
                 function highlight(val) {
                     stars.forEach(s => s.classList.toggle('active', +s.dataset.val <= val));
                 }
-
-
             </script>
-
     </section>
-
 {% endblock %}
 
 {% block extra_js %}
